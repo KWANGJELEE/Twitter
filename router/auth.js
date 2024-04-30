@@ -10,5 +10,9 @@ const validateSignup = [
     body('email').trim().isEmail().withMessage('이메일 형식 확인'), validate
 ]
 router.post('/signup', validateSignup, authController.signup);
+
 router.post('/login', authController.login);
+
+router.get('/me', authController.verify);
+
 export default router;
