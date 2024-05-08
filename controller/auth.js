@@ -7,6 +7,9 @@ import { config } from '../config.js';
 function createJwtToken(id){
     return jwt.sign({id}, config.jwt.secretKey, {expiresIn: config.jwt.expiresInSec});
 }
+
+
+
 export async function signup(req, res, next){
     const {username, password, name, email, url} = req.body;
     const found = await authRepository.findByUsername(username);
@@ -18,6 +21,9 @@ export async function signup(req, res, next){
     const token = createJwtToken(userId);
     res.status(201).json({token, username});
 }
+
+
+
 export async function login(req, res, next){
     const {username, password} = req.body;
     // const user = await authRepository.login(username);
